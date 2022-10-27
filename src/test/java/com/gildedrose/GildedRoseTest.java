@@ -67,10 +67,10 @@ class GildedRoseTest {
   }
 
   @Test
-  @Disabled
   @DisplayName("Conjured items degrade in Quality twice as fast as normal items")
   void conjured_items() {
-    fail("Not implemented");
+    Item item = prepareSingleItem("Conjured biscuit", 5,5);
+    assertThat(item.quality).isEqualTo(3);
   }
 
   private static Item prepareSingleItem(String name, int sellIn, int quality) {
