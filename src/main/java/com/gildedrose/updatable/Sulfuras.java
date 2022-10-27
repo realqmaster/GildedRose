@@ -9,8 +9,9 @@ public class Sulfuras extends UpdatableItem {
   }
 
   @Override
-  void update() {
+  public UpdatableItem update() {
     updateQuality(this);
+    return this;
   }
 
   private void updateQuality(Item item) {

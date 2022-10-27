@@ -8,8 +8,10 @@ public class ConcertPass extends UpdatableItem {
   }
 
   @Override
-  void update() {
+  public UpdatableItem update() {
+    updateSellIn(this);
     updateQuality(this);
+    return this;
   }
 
   private void updateQuality(Item item) {
@@ -22,5 +24,8 @@ public class ConcertPass extends UpdatableItem {
         item.quality = item.quality + 2;
       }
     }
+  }
+  private void updateSellIn(Item item) {
+    item.sellIn = item.sellIn - 1;
   }
 }

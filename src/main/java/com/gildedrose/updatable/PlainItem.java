@@ -9,9 +9,10 @@ public class PlainItem extends UpdatableItem {
   }
 
   @Override
-  void update() {
-    updateQuality(this);
+  public UpdatableItem update() {
     updateSellIn(this);
+    updateQuality(this);
+    return this;
   }
 
   private void updateQuality(PlainItem item) {
@@ -22,7 +23,7 @@ public class PlainItem extends UpdatableItem {
     }
   }
 
-  private void updateSellIn(PlainItem item) {
+  private void updateSellIn(Item item) {
     item.sellIn = item.sellIn - 1;
   }
 }

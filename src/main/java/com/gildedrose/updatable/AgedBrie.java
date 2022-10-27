@@ -9,9 +9,10 @@ public class AgedBrie extends UpdatableItem {
   }
 
   @Override
-  void update() {
+  public UpdatableItem update() {
+    updateSellIn(this);
     updateQuality(this);
-    sellInDecrease(this);
+    return this;
   }
 
   private void updateQuality(Item item) {
@@ -20,7 +21,7 @@ public class AgedBrie extends UpdatableItem {
     }
   }
 
-  private void sellInDecrease(Item item) {
+  private void updateSellIn(Item item) {
     item.sellIn = item.sellIn - 1;
   }
 }

@@ -8,5 +8,5 @@ public abstract class UpdatableItem extends Item {
     super(i.name, i.sellIn, i.quality);
   }
 
-  abstract void update();
+  public abstract Item update();
 }

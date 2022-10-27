@@ -77,7 +77,7 @@ class GildedRoseTest {
     Item[] items = new Item[] {new Item(name, sellIn, quality)};
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-    return items[0];
+    return app.items[0];
     }
 
 }
