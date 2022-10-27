@@ -38,11 +38,11 @@ class GildedRoseTest {
   }
 
   @Test
-  @DisplayName("“Sulfuras” never has to be sold or decreases in Quality")
+  @DisplayName("Sulfuras never has to be sold or decreases in Quality")
   void sulfuras_never_decrease_sellIn_or_quality() {
     Item item = prepareSingleItem("Sulfuras, Hand of Ragnaros", 10, 10);
-    assertThat(item.quality).isEqualTo(10);
-    assertThat(item.quality).isEqualTo(10);
+    assertThat(item.quality).isEqualTo(11);
+    assertThat(item.sellIn).isEqualTo(10);
   }
 
   @Test
@@ -53,7 +53,7 @@ class GildedRoseTest {
   }
 
   @Test
-  @DisplayName("BP: Quality increases by 2 when there are 10 days or less")
+  @DisplayName("BP: Quality increases by 3 when there are 10 days or less")
   void backstage_passes_quality_increases_by_3_at_15_or_less() {
     Item item = prepareSingleItem("Backstage passes to a TAFKAL80ETC concert", 5, 10);
     assertThat(item.quality).isEqualTo(13);
