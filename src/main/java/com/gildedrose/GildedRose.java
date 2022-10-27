@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import java.util.Arrays;
+
 class GildedRose {
   Item[] items;
 
@@ -8,24 +10,35 @@ class GildedRose {
   }
 
   public void updateQuality() {
-    for (Item item : items) {
+    Arrays.asList(items).forEach(this::process);
+  }
 
-      if (isNotSulfuras(item)) {
-        sellInDecrease(item);
-      }
-      if (item.quality > 0 && hasNormalQualityUpdate(item)) {
-        if (item.sellIn >= 0) {
-          qualityDecrease(item);
-        } else {
-          doubleQualityDecrease(item);
-        }
+  private void process(Item item) {
+    if (isNotSulfuras(item)) {
+      sellInDecrease(item);
+    }
+    if (item.quality > 0) {
+      applyUpdateQualityLogic(item);
+    }
+  }
+
+  private void applyUpdateQualityLogic(Item item) {
+    if (hasNormalQualityUpdate(item)) {
+      updateQuality(item);
+    } else {
+      if (isConcertPass(item)) {
+        updateConcertPassQuality(item);
       } else {
-        if (isConcertPass(item)) {
-          updateConcertPassQuality(item);
-        } else {
-          qualityIncreases(item);
-        }
+        qualityIncreases(item);
       }
+    }
+  }
+
+  private void updateQuality(Item item) {
+    if (item.sellIn >= 0) {
+      qualityDecrease(item);
+    } else {
+      doubleQualityDecrease(item);
     }
   }
 
