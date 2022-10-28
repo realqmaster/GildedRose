@@ -22,9 +22,10 @@ public class ConcertPass extends UpdatableItem {
         item.quality = item.quality + 3;
       } else if (item.sellIn < 11) {
         item.quality = item.quality + 2;
-      }
+      } else item.quality = item.quality + 1;
     }
   }
+
   private void updateSellIn(Item item) {
     item.sellIn = item.sellIn - 1;
   }

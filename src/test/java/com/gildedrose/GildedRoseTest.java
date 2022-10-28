@@ -1,11 +1,9 @@
 package com.gildedrose;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.fail;
 
 class GildedRoseTest {
 
@@ -69,15 +67,21 @@ class GildedRoseTest {
   @Test
   @DisplayName("Conjured items degrade in Quality twice as fast as normal items")
   void conjured_items() {
-    Item item = prepareSingleItem("Conjured biscuit", 5,5);
+    Item item = prepareSingleItem("Conjured biscuit", 5, 5);
     assertThat(item.quality).isEqualTo(3);
+  }
+
+  @Test
+  @DisplayName("Quality should never become negative")
+  void quality_not_negative() {
+    Item item = prepareSingleItem("foo", 0, 0);
+    assertThat(item.quality).isEqualTo(0);
   }
 
   private static Item prepareSingleItem(String name, int sellIn, int quality) {
     Item[] items = new Item[] {new Item(name, sellIn, quality)};
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
+    GildedRose app = new GildedRose(items);
+    app.updateQuality();
     return app.items[0];
-    }
-
+  }
 }
